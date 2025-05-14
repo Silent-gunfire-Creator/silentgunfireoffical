@@ -1,0 +1,87 @@
+/* Basic Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1a1a1a;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+#homeSection, #officalartsection, #secretPageSection {
+  padding: 20px;
+}
+
+button {
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff4500;
+}
+
+h1, h2 {
+  color: white;
+}
+
+/* Home Section - Title and Image */
+#homeSection {
+  position: relative;
+  height: 100vh;
+  background-image: url('https://i.ibb.co/W4LYsWxg/Silent-Gunfire-project-for-advertizement.png');
+  background-position: bottom;
+  background-size: cover;
+  color: white;
+}
+
+.title-banner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  text-align: center;
+  padding: 20px;
+}
+
+.title-text h1 {
+  font-size: 3em;
+  margin: 0;
+}
+
+.title-text h3 {
+  font-size: 1.5em;
+}
+
+/* Gallery for Official Art */
+.gallery {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.art-image {
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+  border: 2px solid #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.art-image:hover {
+  transform: scale(1.1); /* Enlarge the image when hovered */
+  opacity: 0.8;
+}
+
+/* Hide the secret button by default */
+#secretPage {
+  display: none;
+}
