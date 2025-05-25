@@ -1,49 +1,35 @@
-// Show the secret page button after clicking on any image in the official art section
-document.querySelectorAll('.art-image').forEach(img => {
-  img.addEventListener('click', function() {
-    document.getElementById('secretPage').style.display = 'block'; // Show the secret page button
+const homeSection = document.getElementById("homeSection");
+const trailerSection = document.getElementById("trailerSection");
+const creatorsSection = document.getElementById("creatorsSection");
+const officalartsection = document.getElementById("officalartsection");
+const secretPageSection = document.getElementById("secretPageSection");
+
+document.getElementById("goToTrailer").onclick = () => {
+  showOnly(trailerSection);
+};
+
+document.getElementById("goToCreators").onclick = () => {
+  showOnly(creatorsSection);
+};
+
+document.getElementById("goToOfficalart").onclick = () => {
+  showOnly(officalartsection);
+};
+
+document.querySelectorAll(".backHome").forEach((btn) => {
+  btn.onclick = () => showOnly(homeSection);
+});
+
+document.querySelectorAll('.gallery a').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    showOnly(secretPageSection);
   });
 });
 
-// Navigation between sections
-document.getElementById("goToTrailer").addEventListener("click", () => {
-  document.getElementById("homeSection").style.display = "none";
-  document.getElementById("trailerSection").style.display = "block";
-});
-
-document.getElementById("goToCreators").addEventListener("click", () => {
-  document.getElementById("homeSection").style.display = "none";
-  document.getElementById("creatorsSection").style.display = "block";
-});
-
-document.getElementById("goToOfficalart").addEventListener("click", () => {
-  document.getElementById("homeSection").style.display = "none";
-  document.getElementById("officalartsection").style.display = "block";
-});
-
-document.getElementById("goHome").addEventListener("click", () => {
-  document.getElementById("trailerSection").style.display = "none";
-  document.getElementById("homeSection").style.display = "block";
-});
-
-document.getElementById("goHomeFromCreators").addEventListener("click", () => {
-  document.getElementById("creatorsSection").style.display = "none";
-  document.getElementById("homeSection").style.display = "block";
-});
-
-document.getElementById("goHomeFromArt").addEventListener("click", () => {
-  document.getElementById("officalartsection").style.display = "none";
-  document.getElementById("homeSection").style.display = "block";
-});
-
-// Secret page navigation
-document.getElementById("secretPage").addEventListener("click", () => {
-  document.getElementById("officalartsection").style.display = "none";
-  document.getElementById("secretPageSection").style.display = "block";
-});
-
-// Back to home button on secret page
-document.getElementById("goHomeFromSecret").addEventListener("click", () => {
-  document.getElementById("secretPageSection").style.display = "none";
-  document.getElementById("homeSection").style.display = "block";
-});
+function showOnly(section) {
+  [homeSection, trailerSection, creatorsSection, officalartsection, secretPageSection].forEach(sec => {
+    sec.style.display = "none";
+  });
+  section.style.display = "block";
+}
