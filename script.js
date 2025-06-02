@@ -1,59 +1,55 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const homeSection = document.getElementById("homeSection");
-  const trailerSection = document.getElementById("trailerSection");
-  const creatorsSection = document.getElementById("creatorsSection");
-  const officalartsection = document.getElementById("officalartsection");
-  const secretPageSection = document.getElementById("secretPageSection");
-
-  // Map section names to their elements
-  const sectionMap = {
-    "home": homeSection,
-    "trailer": trailerSection,
-    "creators": creatorsSection,
-    "art": officalartsection,
-    "secret": secretPageSection
-  };
-
-  function showOnlySectionByHash(hash) {
-    // Remove the # if present
-    const sectionName = hash.replace("#", "") || "home";
-    // Hide all sections
-    Object.values(sectionMap).forEach(sec => sec.style.display = "none");
-    // Show the requested section, or fallback to home
-    (sectionMap[sectionName] || homeSection).style.display = "block";
-  }
-
-  // Navigation button handlers update the URL hash
-  document.getElementById("goToTrailer").onclick = () => {
-    window.location.hash = "#trailer";
-  };
-
-  document.getElementById("goToCreators").onclick = () => {
-    window.location.hash = "#creators";
-  };
-
-  document.getElementById("goToOfficalart").onclick = () => {
-    window.location.hash = "#art";
-  };
-
-  document.querySelectorAll(".backHome").forEach((btn) => {
-    btn.onclick = () => {
-      window.location.hash = "#home";
-    };
+// Show the secret page button after clicking on any image in the official art section
+document.querySelectorAll(".art-image").forEach((img) => {
+  img.addEventListener("click", function (e) {
+    e.preventDefault();
+    document.getElementById("secretPage").style.display = "inline-block"; // Show secret button
   });
+});
 
-  document.querySelectorAll('.gallery a').forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.location.hash = "#secret";
-    });
-  });
+// Navigation buttons
+document.getElementById("goToTrailer").addEventListener("click", () => {
+  document.getElementById("homeSection").style.display = "none";
+  document.getElementById("trailerSection").style.display = "block";
+});
 
-  // Listen for hash changes (browser navigation)
-  window.addEventListener('hashchange', () => {
-    showOnlySectionByHash(window.location.hash);
-  });
+document.getElementById("goToCreators").addEventListener("click", () => {
+  document.getElementById("homeSection").style.display = "none";
+  document.getElementById("creatorsSection").style.display = "block";
+});
 
-  // Show correct section on first load
-  showOnlySectionByHash(window.location.hash);
+document.getElementById("goToOfficalart").addEventListener("click", () => {
+  document.getElementById("homeSection").style.display = "none";
+  document.getElementById("officalartsection").style.display = "block";
+});
+
+document.getElementById("goHome").addEventListener("click", () => {
+  document.getElementById("trailerSection").style.display = "none";
+  document.getElementById("homeSection").style.display = "block";
+});
+
+document.getElementById("goHomeFromCreators").addEventListener("click", () => {
+  document.getElementById("creatorsSection").style.display = "none";
+  document.getElementById("homeSection").style.display = "block";
+});
+
+document.getElementById("goHomeFromArt").addEventListener("click", () => {
+  document.getElementById("officalartsection").style.display = "none";
+  document.getElementById("homeSection").style.display = "block";
+});
+
+// Secret page button navigation
+document.getElementById("secretPage").addEventListener("click", () => {
+  document.getElementById("officalartsection").style.display = "none";
+  document.getElementById("secretPageSection").style.display = "block";
+});
+
+// Back to home from secret page
+document.getElementById("goHomeFromSecret").addEventListener("click", () => {
+  document.getElementById("secretPageSection").style.display = "none";
+  document.getElementById("homeSection").style.display = "block";
+});
+
+// Discord button link on creators page
+document.getElementById("discordBtn").addEventListener("click", () => {
+  window.open("https://discord.gg/SzMUH6BHnF", "_blank");
 });
